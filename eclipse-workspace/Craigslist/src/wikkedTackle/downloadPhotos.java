@@ -33,7 +33,6 @@ public class downloadPhotos
 		clearFile(newFile);
 
 		writeFileAsAppend(file, newFile);
-		// checkIfEmpty(newFile);
 		return newFile;
 	}
 
@@ -48,7 +47,6 @@ public class downloadPhotos
 	{
 		Path path = file.toPath();
 		List<String> lines = Files.readAllLines(path);
-		// System.out.println(lines.toString());
 		return lines;
 	}
 
@@ -115,7 +113,6 @@ public class downloadPhotos
 			{
 				writer.write(val);
 				writer.write("\n");
-				//System.out.println(val);
 			}
 		}
 		writer.close();
@@ -124,10 +121,8 @@ public class downloadPhotos
 
 	public static void downloadImages(String image, String name) throws Exception
 	{
-		//Arrays.sort(images);
 		int count = 5;
 		FileOutputStream fos = null;
-		//System.out.println(image);
 		URL website = new URL(image);
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 		fos = new FileOutputStream("/Volumes/Mac/test/" + name.replaceAll("/", "-") + ".jpg");
@@ -139,10 +134,8 @@ public class downloadPhotos
 	{
 		File newFile;
 		newFile = createNewFile();
-		// System.out.println("File created: " + newFile.toString());
 		String[] imageURLs = sortFile(newFile);
 		// downloadImages(imageURLs);
-		// System.out.println("Done.");
 	}
 
 }
