@@ -22,6 +22,7 @@ import org.apache.commons.io.FileUtils;
 
 public class downloadPhotos
 {
+	// Creates the file and the directory
 	public static File createNewFile() throws IOException
 	{
 		File file = new File("/Users/Kamaro/Downloads/spreadsheet-modified.csv");
@@ -36,6 +37,7 @@ public class downloadPhotos
 		return newFile;
 	}
 
+	// Copies the lines that are read by readFileAsSequencesOfLines()
 	private static void writeFileAsAppend(File reader, File writer) throws IOException
 	{
 		List<String> lines = readFileAsSequencesOfLines(reader);
@@ -43,13 +45,14 @@ public class downloadPhotos
 		Files.write(path, lines, StandardOpenOption.APPEND);
 	}
 
+	// Reads the file line for line
 	private static List<String> readFileAsSequencesOfLines(File file) throws IOException
 	{
 		Path path = file.toPath();
-		List<String> lines = Files.readAllLines(path);
-		return lines;
+		return Files.readAllLines(path);
 	}
 
+	// Empty-file check
 	public static void checkIfEmpty(File file) throws IOException
 	{
 		BufferedReader br = new BufferedReader(new FileReader(file));
@@ -63,6 +66,7 @@ public class downloadPhotos
 		}
 	}
 
+	// Removes all content from the file
 	public static void clearFile(File file) throws IOException
 	{
 		PrintWriter writer = new PrintWriter(file);
@@ -74,6 +78,7 @@ public class downloadPhotos
 		return line.split(",")[i];// extract value you want to sort on
 	}
 
+	// Sorts the file in ascending order.
 	public static String[] sortFile(File file) throws Exception
 	{
 		BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -94,7 +99,6 @@ public class downloadPhotos
 			}
 			imageURLs[count] = key;
 			String key2 = getField(line, 0);
-			List<String> l2 = map.get(key2);
 			l.add(line.substring(0, key2.length() + key.length() + 1));
 			if (!key.isEmpty() && key != " " && key != "" && key.contains("//") && key != "Spinner Baits")
 			{
@@ -119,6 +123,7 @@ public class downloadPhotos
 		return imageURLs;
 	}
 
+	// Downloads the photos using the URLs in the csv
 	public static void downloadImages(String image, String name) throws Exception
 	{
 		int count = 5;
