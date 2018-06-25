@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 
@@ -137,6 +138,8 @@ public class downloadPhotos
 
 	public static void main(String[] args) throws IOException, Exception
 	{
+		Logger LOGGER = Logger.getLogger("InfoLogging");
+		LOGGER.info("Logging an INFO-level message");
 		File newFile;
 		newFile = createNewFile();
 		String[] imageURLs = sortFile(newFile);
